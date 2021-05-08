@@ -1,0 +1,107 @@
+syntax = "proto3";
+option go_package = "github.com/llamerada-jp/oinari-lib-go/pkg/api";
+
+service Oinari {
+  // Core RPCs
+  rpc GetApplicationInformation(GetApplicationInformationRequest) returns (GetApplicationInformationResponse) {}
+
+  rpc GetNodeEvent(GetNodeEventRequest) returns (stream GetNodeEventResponse) {}
+
+  rpc GetDump(GetDumpRequest) returns (GetDumpResponse) {}
+  rpc PutDump(PutDumpRequest) returns (PutDumpResponse) {}
+
+  // PRCs for objects
+  rpc SetModel(SetModelRequest) returns (SetModelResponse) {}
+
+  rpc GetPosition(GetPositionRequest) returns (GetPositionResponse) {}
+  rpc SetPosition(SetPositionRequest) returns (SetPositionResponse) {}
+}
+
+message GetApplicationInformationRequest {}
+message GetApplicationInformationResponse {
+  enum Status {
+    STATUS_UNKNOWN = 0;
+    STATUS_PENDING = 1;
+    STATUS_STARTING = 2;
+    STATUS_MIGRATING = 3;
+    STATUS_RUNNING = 4;
+  }
+  Status status = 1;
+}
+
+message GetNodeEventRequest {
+}
+
+message GetNodeEventResponse {
+  enum EventType {
+    EVENT_STEP = 0;
+    EVENT_STOP = 1;
+    EVENT_INACTIVATE = 2;
+  }
+  EventType type = 1;
+}
+
+message GetDumpRequest {
+}
+
+message GetDumpResponse {
+  map<string, bytes> data = 1;
+}
+
+message PutDumpRequest {
+  map<string, bytes> data = 1;
+}
+
+message PutDumpResponse {
+}
+
+message SetModelRequest {
+  enum ModelType {
+    GLTF = 0;
+  }
+  ModelType type = 1;
+  bytes data = 2;
+}
+
+message SetModelResponse {
+}
+
+enum CoordinateType {
+  COORDINATE_UNKNOWN = 0;
+  COORDINATE_2D = 1;
+  COORDINATE_3D = 2;
+}
+
+message Coordinate {
+  message D2 {
+    double x = 1;
+    double y = 2;
+  }
+
+  message D3 {
+    double x = 1;
+    double y = 2;
+    double z = 3;
+  }
+
+  CoordinateType type = 1;
+  oneof coordinate {
+    D2 d2 = 2;
+    D3 d3 = 3;
+  }
+}
+
+message GetPositionRequest {
+  CoordinateType type = 1;
+}
+
+message GetPositionResponse {
+  Coordinate coordinate = 1;
+}
+
+message SetPositionRequest {
+  Coordinate coordinate = 1;
+}
+
+message SetPositionResponse {
+}

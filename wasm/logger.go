@@ -1,3 +1,5 @@
+// +build js
+
 /**
  * Copyright 2021 Yuji Ito <llamerada.jp@gmail.com>
  *
@@ -18,7 +20,7 @@ package wasm
 import (
 	"syscall/js"
 
-	"github.com/llamerada-jp/oinari-lib-go/pkg/logger"
+	"github.com/llamerada-jp/oinari-lib-go/logger"
 )
 
 type loggerImpl struct {

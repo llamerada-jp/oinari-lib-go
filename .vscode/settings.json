@@ -1,8 +1,0 @@
-{
-  "gopls": {
-    "env": {
-      "GOARCH": "wasm",
-      "GOOS": "js"
-    }
-  }
-}

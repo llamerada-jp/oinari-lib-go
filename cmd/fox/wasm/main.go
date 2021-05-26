@@ -1,3 +1,5 @@
+// +build js
+
 /**
  * Copyright 2021 Yuji Ito <llamerada.jp@gmail.com>
  *
@@ -20,9 +22,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/llamerada-jp/oinari-lib-go/pkg/fox"
-	"github.com/llamerada-jp/oinari-lib-go/pkg/oinari"
-	"github.com/llamerada-jp/oinari-lib-go/pkg/wasm"
+	"github.com/llamerada-jp/oinari-lib-go/internal/fox"
+	"github.com/llamerada-jp/oinari-lib-go/oinari"
+	"github.com/llamerada-jp/oinari-lib-go/wasm"
 )
 
 func main() {

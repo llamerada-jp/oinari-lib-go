@@ -21,7 +21,7 @@ import (
 	"encoding/json"
 	"math/rand"
 
-	"github.com/llamerada-jp/oinari-lib-go/pkg/oinari"
+	"github.com/llamerada-jp/oinari-lib-go/oinari"
 )
 
 var (
@@ -30,6 +30,7 @@ var (
 )
 
 type Fox struct {
+	oinari.UnimplementedRunnable3D
 }
 
 func (f *Fox) Start(ctx context.Context, op oinari.Operator3D) error {

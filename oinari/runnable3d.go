@@ -19,7 +19,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/llamerada-jp/oinari-lib-go/pkg/api"
+	"github.com/llamerada-jp/oinari-lib-go/api"
 )
 
 type Runnable3D interface {
@@ -29,7 +29,37 @@ type Runnable3D interface {
 	Dump(context.Context, Operator3D) (map[string][]byte, error)
 	Inactivate(context.Context, Operator3D) error
 	Stop(context.Context, Operator3D) error
+	mustEmbedUnimplementedRunnable3D()
 }
+
+type UnimplementedRunnable3D struct {
+}
+
+func (UnimplementedRunnable3D) Start(context.Context, Operator3D) error {
+	return nil
+}
+
+func (UnimplementedRunnable3D) Activate(context.Context, Operator3D, map[string][]byte) error {
+	return nil
+}
+
+func (UnimplementedRunnable3D) Step(context.Context, Operator3D) error {
+	return fmt.Errorf("method Step not implemented")
+}
+
+func (UnimplementedRunnable3D) Dump(context.Context, Operator3D) (map[string][]byte, error) {
+	return nil, nil
+}
+
+func (UnimplementedRunnable3D) Inactivate(context.Context, Operator3D) error {
+	return nil
+}
+
+func (UnimplementedRunnable3D) Stop(context.Context, Operator3D) error {
+	return nil
+}
+
+func (UnimplementedRunnable3D) mustEmbedUnimplementedRunnable3D() {}
 
 type Operator3D interface {
 	GetAbsolutePosition(context.Context) (float64, float64, float64, error)

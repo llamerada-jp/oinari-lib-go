@@ -22,8 +22,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/llamerada-jp/oinari-lib-go/pkg/api"
-	"github.com/llamerada-jp/oinari-lib-go/pkg/logger"
+	"github.com/llamerada-jp/oinari-lib-go/api"
+	"github.com/llamerada-jp/oinari-lib-go/logger"
 	"google.golang.org/grpc"
 )
 

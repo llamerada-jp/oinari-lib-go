@@ -1,4 +1,4 @@
-	# library versions
+# library versions
 PROTOBUF_VERSION := 3.15.8
 
 # paths
@@ -7,15 +7,15 @@ BIN_PATH := $(ROOT_PATH)/bin
 WORK_PATH ?= /tmp/oinari-lib-go-work
 
 .PHONY: build
-build: pkg/api/oinari_grpc.pb.go pkg/fox/fox.glb
-	go build -o $(BIN_PATH)/fox cmd/fox_native/*.go
-	GOOS=js GOARCH=wasm go build -o $(BIN_PATH)/fox.wasm cmd/fox_wasm/*.go
+build: api/oinari_grpc.pb.go internal/fox/fox.glb
+	go build -o $(BIN_PATH)/fox cmd/fox/native/*.go
+	GOOS=js GOARCH=wasm go build -o $(BIN_PATH)/fox.wasm cmd/fox/wasm/*.go
 
-pkg/api/oinari_grpc.pb.go: api/oinari.proto
+api/oinari_grpc.pb.go: api/oinari.proto
 	PATH="${PATH}:$(shell go env GOPATH)/bin" $(BIN_PATH)/protoc --go_out=. --go_opt=module=github.com/llamerada-jp/oinari-lib-go --go-grpc_out=. --go-grpc_opt=module=github.com/llamerada-jp/oinari-lib-go api/oinari.proto
 
-pkg/fox/fox.glb:
-	curl -Lo pkg/fox/fox.glb https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Fox/glTF-Binary/Fox.glb
+internal/fox/fox.glb:
+	curl -Lo internal/fox/fox.glb https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Fox/glTF-Binary/Fox.glb
 
 .PHONY: clean
 clean:

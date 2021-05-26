@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/llamerada-jp/oinari-lib-go/pkg/api";
+option go_package = "github.com/llamerada-jp/oinari-lib-go/api";
 
 service Oinari {
   // Core RPCs

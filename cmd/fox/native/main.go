@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/llamerada-jp/oinari-lib-go/pkg/fox"
-	"github.com/llamerada-jp/oinari-lib-go/pkg/oinari"
+	"github.com/llamerada-jp/oinari-lib-go/internal/fox"
+	"github.com/llamerada-jp/oinari-lib-go/oinari"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

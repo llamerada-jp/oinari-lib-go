@@ -1,3 +1,4 @@
+/.vscode
+/api/*.go
 /bin
-/pkg/api/*
-/pkg/fox/fox.glb
+/internal/fox/fox.glb

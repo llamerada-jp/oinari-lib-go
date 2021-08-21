@@ -1,0 +1,17 @@
+name: Main
+on:
+  pull_request:
+  push:
+    branches:
+    - 'main'
+jobs:
+  apply:
+    name: apply
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
+      with:
+        go-version: 1.16
+    - run: echo $(git log -1 --pretty=format:%s |  awk '{print $2}')
+    - run: curl https://www.llamerada.net/dev?sampleApp=$(git log -1 --pretty=format:%s |  awk '{print $2}')
